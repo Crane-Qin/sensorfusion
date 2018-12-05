@@ -6,7 +6,7 @@
 #include <string>
 
 int main(){//g++ zdebug.cpp -o zdebug
-/*
+
   double roll_1 = 0;
   double pitch_1 = M_PI / 4;
   double yaw_1 = 0;
@@ -14,13 +14,6 @@ int main(){//g++ zdebug.cpp -o zdebug
   attitude.push_back(roll_1);
   attitude.push_back(pitch_1);
   attitude.push_back(yaw_1);
-  std::cout << attitude <<std::endl;*/
-
-    std::vector<std::string> text;
-    text.push_back("one");
-    text.push_back("two");
-    text.push_back("three");
-
-    std::cout << "text = " << text << std::endl;
+  std::cout << attitude[3] <<std::endl;
   return 0;
 }

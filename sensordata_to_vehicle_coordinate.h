@@ -15,19 +15,35 @@ class CoordTransform{
    * Destructor
    */
   virtual ~CoordTransform();
-
+  
   /**
-   * @brief Converts to a quaternion with a non-negative scalar part
+   * @brief Convert euler_angle to a quaternion
+   * @param  pitch_, roll_, yaw_ sensor attitude
    * @return Quaternion encoding this rotation.
    */
-  Eigen::Quaterniond EulerToQuaternion(const double& pitch_, const double& roll_, const double& yaw_);
+  Eigen::Quaterniond EulerToQuaternion(
+      const double& pitch_, const double& roll_, const double& yaw_);
 
-  //@brief Convert a quaternion to a 3x3 rotation matrix 
-  Eigen::Matrix3d QuaterniontoRotation(const Eigen::Quaterniond& q){
+  /**
+   * @brief Convert a quaternion to a 3x3 rotation matrix 
+   */
+  inline Eigen::Matrix3d QuaterniontoRotation(const Eigen::Quaterniond& q){
     return q.normalized().toRotationMatrix();
   }
-  
-  //TODO not use
+
+  /**
+   * @brief Convert SensorData to Vehicle observation
+   * @param x_, y_, z_, Raw SensorData location
+   * @param x_s, y_s, z_s, Sensor position, relative to vehicle
+   * @param x_v, y_v, z_v, Transformed Sensor observation
+   * @return
+   */
+  void SensorDataToVehicle (const double &x_, const double &y_, const double &z_,
+                            const double &x_s, const double &y_s, const double &z_s,
+                            const Eigen::Matrix3d rotation_,
+                            double *x_v, double *y_v, double *z_v);
+
+  //TODOs not use
   //@brief Convert AngleAxis to a 3x3 rotation matrix
   Eigen::Quaterniond AngleAxistoRotation(const double& pitch_, const double& roll_, const double& yaw_){
     return Eigen::AngleAxisd(yaw_, Eigen::Vector3d::UnitZ()) *
@@ -36,7 +52,6 @@ class CoordTransform{
   }
 
 };
-
  
 /* from apollo
   Eigen::Quaternion<T> ToQuaternion() const {
