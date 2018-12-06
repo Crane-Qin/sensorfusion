@@ -1,5 +1,5 @@
-#ifndef PID_H
-#define PID_H
+#ifndef SENSORDATA_TO_VEHICLE_COORDINATE_H
+#define SENSORDATA_TO_VEHICLE_COORDINATE_H
 
 #include "Eigen/Geometry"
 
@@ -52,7 +52,9 @@ class CoordTransform{
   }
 
 };
- 
+#endif // SENSORDATA_TO_VEHICLE_COORDINATE_H
+
+
 /* from apollo
   Eigen::Quaternion<T> ToQuaternion() const {
     T r = roll_ * 0.5;
@@ -93,5 +95,3 @@ Matrix4x4(
 		0.0f, 0.0f, 0.0f, 1.0f
 		)
 */
-
-#endif // PID_H 
